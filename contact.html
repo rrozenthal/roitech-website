@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — ROI Technologies</title>
+  <meta name="description" content="Get in touch with ROI Technologies. Reach us by phone, email, or use our contact form to start a conversation about your IT consulting needs." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav>
+      <a class="nav-logo" href="index.html">
+        <img src="images/logo.jpg" alt="ROI Technologies" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Contact Us</h1>
+    <p>We'd love to hear about your project. Reach out and we'll respond promptly.</p>
+  </div>
+
+  <!-- CONTACT BODY -->
+  <section>
+    <div class="section-inner">
+      <div class="contact-layout">
+
+        <!-- LEFT: Contact Info -->
+        <div class="contact-info">
+          <h2>Get In Touch</h2>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <!-- phone -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Phone</strong>
+              <a href="tel:+12012332933">201.233.2933</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <!-- email -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Email</strong>
+              <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <!-- location -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div class="contact-detail-text">
+              <strong>Office</strong>
+              <span>12 Madison Avenue, Suite 101<br>Demarest, NJ 07627</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 36px; padding: 20px; background: var(--bg-light); border-radius: 8px; border: 1px solid var(--border);">
+            <p style="font-size: 0.92rem; color: var(--text-light); line-height: 1.7;">
+              <strong style="color: var(--charcoal);">Response Time:</strong><br>
+              We typically respond to all inquiries within one business day.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Contact Form -->
+        <div class="contact-form-wrap">
+          <h2>Send Us a Message</h2>
+          <form action="mailto:roi@roitechllc.com" method="post" enctype="text/plain">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane.smith@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="555.000.0000" />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company / Organization</label>
+              <input type="text" id="company" name="company" placeholder="Your organization" />
+            </div>
+
+            <div class="form-group">
+              <label for="service">Area of Interest</label>
+              <select id="service" name="service">
+                <option value="">Select a service...</option>
+                <option value="consulting">IT Consulting Services</option>
+                <option value="training">Technology Training</option>
+                <option value="field-force">Field Force Realignments</option>
+                <option value="sales-process">Sales Process Optimization</option>
+                <option value="data-conversion">System &amp; Data Conversions</option>
+                <option value="integration">System Integration</option>
+                <option value="process">Process Transformations</option>
+                <option value="other">Other / Not Sure Yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project or question..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="background: var(--blue-dark); color: white; border: none; cursor: pointer; width: 100%; justify-content: center;">
+              Send Message
+            </button>
+
+            <p class="form-note">
+              Submitting this form will open your default email client. Alternatively, you can email us directly at
+              <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.jpg" alt="ROI Technologies" />
+        <p>Innovative and diverse information solutions for life science organizations.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a></li>
+          <li><a href="tel:+12012332933">201.233.2933</a></li>
+          <li>12 Madison Avenue, Ste. 101</li>
+          <li>Demarest, NJ 07627</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 ROI Technologies LLC. All rights reserved.</span>
+      <span>Demarest, NJ</span>
+    </div>
+  </footer>
+
+</body>
+</html>
