@@ -90,23 +90,31 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 80px;
 }
 
+/* Crop the PNG's built-in white padding so only the logo content shows */
 .nav-logo {
-  display: flex;
-  align-items: center;
+  display: block;
+  overflow: hidden;
+  width: 122px;
+  height: 80px;
+  flex-shrink: 0;
 }
 
 .nav-logo img {
-  height: 60px;
+  height: 130px;
   width: auto;
+  display: block;
+  /* shift up/left to strip ~19% white padding from each side */
+  margin-top: -20px;
+  margin-left: -30px;
   animation: navLogoIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .nav-logo:hover img {
-  transform: scale(1.06);
+  transform: scale(1.04);
   filter: drop-shadow(0 4px 14px rgba(45, 95, 154, 0.35));
 }
 
@@ -183,17 +191,27 @@ nav {
   display: inline-block;
   background: rgba(255,255,255,0.97);
   border-radius: 20px;
-  padding: 24px 56px;
+  padding: 14px 18px;
   margin-bottom: 44px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
   animation: heroLogoIn 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both,
              logoGlow 3.5s ease-in-out 0.75s infinite;
 }
 
-.hero-logo-card img {
-  height: 120px;
+/* Crop window — strips the PNG's built-in white padding */
+.logo-crop {
+  display: block;
+  width: 175px;
+  height: 115px;
+  overflow: hidden;
+}
+
+.logo-crop img {
+  height: 185px;
   width: auto;
   display: block;
+  margin-top: -27px;
+  margin-left: -42px;
 }
 
 .hero h1 {
