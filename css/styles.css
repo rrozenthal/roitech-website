@@ -97,7 +97,7 @@ nav {
 .nav-logo {
   display: block;
   overflow: hidden;
-  width: 122px;
+  width: 148px;
   height: 80px;
   flex-shrink: 0;
 }
@@ -106,9 +106,8 @@ nav {
   height: 130px;
   width: auto;
   display: block;
-  /* shift up/left to strip ~19% white padding from each side */
   margin-top: -20px;
-  margin-left: -30px;
+  margin-left: -14px;
   animation: navLogoIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: transform 0.25s ease, filter 0.25s ease;
 }
@@ -201,7 +200,7 @@ nav {
 /* Crop window — strips the PNG's built-in white padding */
 .logo-crop {
   display: block;
-  width: 175px;
+  width: 210px;
   height: 115px;
   overflow: hidden;
 }
@@ -211,7 +210,7 @@ nav {
   width: auto;
   display: block;
   margin-top: -27px;
-  margin-left: -42px;
+  margin-left: -20px;
 }
 
 .hero h1 {
