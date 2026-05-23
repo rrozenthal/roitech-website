@@ -626,6 +626,34 @@ section {
   margin-top: 12px;
 }
 
+.req { color: var(--blue-dark); font-weight: 700; }
+
+.form-result-success {
+  padding: 14px 16px;
+  background: #edfaf3;
+  border: 1px solid #6fcf97;
+  border-radius: 6px;
+  color: #1a6636;
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.form-result-error {
+  padding: 14px 16px;
+  background: #fff0f0;
+  border: 1px solid #e57373;
+  border-radius: 6px;
+  color: #b71c1c;
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.form-result-error a { color: #b71c1c; text-decoration: underline; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── HOME CTA BAND ──────────────────────────────────────── */
 
 .cta-band {

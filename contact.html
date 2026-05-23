@@ -89,26 +89,34 @@
         <!-- RIGHT: Contact Form -->
         <div class="contact-form-wrap">
           <h2>Send Us a Message</h2>
-          <form action="mailto:roi@roitechllc.com" method="post" enctype="text/plain">
+
+          <form id="contact-form" novalidate>
+            <!-- Web3Forms: get your free key at web3forms.com (enter roi@roitechllc.com) -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE" />
+            <input type="hidden" name="from_name" value="ROI Technologies Website" />
+            <!-- subject is set dynamically by JS based on service selected -->
+            <input type="hidden" id="form-subject" name="subject" value="New Inquiry — ROI Technologies" />
+            <!-- botcheck honeypot (leave empty) -->
+            <input type="checkbox" name="botcheck" style="display:none" />
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first-name" placeholder="Jane" required />
+                <label for="first-name">First Name <span class="req">*</span></label>
+                <input type="text" id="first-name" name="first_name" placeholder="Jane" required />
               </div>
               <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" placeholder="Smith" required />
+                <label for="last-name">Last Name <span class="req">*</span></label>
+                <input type="text" id="last-name" name="last_name" placeholder="Smith" required />
               </div>
             </div>
 
             <div class="form-group">
-              <label for="email">Email Address</label>
+              <label for="email">Email Address <span class="req">*</span></label>
               <input type="email" id="email" name="email" placeholder="jane.smith@company.com" required />
             </div>
 
             <div class="form-group">
-              <label for="phone">Phone Number (optional)</label>
+              <label for="phone">Phone Number <span style="font-weight:400;color:var(--text-light)">(optional)</span></label>
               <input type="tel" id="phone" name="phone" placeholder="555.000.0000" />
             </div>
 
@@ -121,14 +129,14 @@
               <label for="service">Area of Interest</label>
               <select id="service" name="service">
                 <option value="">Select a service...</option>
-                <option value="consulting">IT Consulting Services</option>
-                <option value="training">Technology Training</option>
-                <option value="field-force">Field Force Realignments</option>
-                <option value="sales-process">Sales Process Optimization</option>
-                <option value="data-conversion">System &amp; Data Conversions</option>
-                <option value="integration">System Integration</option>
-                <option value="process">Process Transformations</option>
-                <option value="other">Other / Not Sure Yet</option>
+                <option value="IT Consulting Services">IT Consulting Services</option>
+                <option value="Technology Training">Technology Training</option>
+                <option value="Field Force Realignments">Field Force Realignments</option>
+                <option value="Sales Process Optimization">Sales Process Optimization</option>
+                <option value="System &amp; Data Conversions">System &amp; Data Conversions</option>
+                <option value="System Integration">System Integration</option>
+                <option value="Process Transformations">Process Transformations</option>
+                <option value="Other / Not Sure Yet">Other / Not Sure Yet</option>
               </select>
             </div>
 
@@ -137,12 +145,15 @@
               <textarea id="message" name="message" placeholder="Tell us about your project or question..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="background: var(--blue-dark); color: white; border: none; cursor: pointer; width: 100%; justify-content: center;">
-              Send Message
+            <button type="submit" id="submit-btn" class="btn" style="background:var(--blue-dark);color:#fff;border:none;cursor:pointer;width:100%;justify-content:center;display:flex;align-items:center;gap:8px;">
+              <span id="btn-text">Send Message</span>
+              <svg id="btn-spinner" style="display:none;animation:spin 0.8s linear infinite" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"/></svg>
             </button>
 
-            <p class="form-note">
-              Submitting this form will open your default email client. Alternatively, you can email us directly at
+            <div id="form-result" style="margin-top:16px;display:none"></div>
+
+            <p class="form-note" style="margin-top:12px">
+              Fields marked <span class="req">*</span> are required. You can also reach us directly at
               <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.
             </p>
           </form>
@@ -184,5 +195,75 @@
     </div>
   </footer>
 
+  <script>
+    // Dynamically update the subject line when service area changes
+    document.getElementById('service').addEventListener('change', function () {
+      const service = this.value;
+      const subject = service
+        ? 'New Inquiry: ' + service + ' — ROI Technologies'
+        : 'New Inquiry — ROI Technologies';
+      document.getElementById('form-subject').value = subject;
+    });
+
+    // Async form submission via Web3Forms
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const btn     = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const spinner = document.getElementById('btn-spinner');
+      const result  = document.getElementById('form-result');
+
+      // Basic client-side validation
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName  = document.getElementById('last-name').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      if (!firstName || !lastName || !email) {
+        showResult('error', 'Please fill in all required fields.');
+        return;
+      }
+
+      // Loading state
+      btn.disabled  = true;
+      btnText.textContent = 'Sending…';
+      spinner.style.display = 'inline-block';
+      result.style.display  = 'none';
+
+      try {
+        const formData = new FormData(this);
+        const object   = Object.fromEntries(formData.entries());
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body:    JSON.stringify(object)
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          showResult('success',
+            '&#10003; Thank you! Your message has been sent. We\'ll be in touch within one business day.');
+          this.reset();
+          document.getElementById('form-subject').value = 'New Inquiry — ROI Technologies';
+        } else {
+          showResult('error',
+            'Something went wrong. Please try again or email us directly at <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.');
+        }
+      } catch (err) {
+        showResult('error',
+          'Network error. Please check your connection or email us at <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.');
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = 'Send Message';
+        spinner.style.display = 'none';
+      }
+    });
+
+    function showResult(type, message) {
+      const result = document.getElementById('form-result');
+      result.style.display = 'block';
+      result.className = 'form-result-' + type;
+      result.innerHTML = message;
+    }
+  </script>
 </body>
 </html>
