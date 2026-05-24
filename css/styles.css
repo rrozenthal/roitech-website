@@ -631,6 +631,11 @@ section {
 /* Brand name highlight in body text */
 .brand { color: var(--blue-dark); font-weight: 700; }
 
+/* On dark/blue backgrounds the dark blue is invisible — use light blue instead */
+.cta-band .brand,
+.hero .brand,
+.page-header .brand { color: #a8d4f5; font-weight: 700; }
+
 .form-result-success {
   padding: 14px 16px;
   background: #edfaf3;
@@ -707,11 +712,23 @@ footer {
   margin-bottom: 36px;
 }
 
-.footer-brand img {
-  height: 40px;
-  margin-bottom: 12px;
+/* Footer logo — crop PNG whitespace, invert to white for dark bg */
+.footer-logo-wrap {
+  display: block;
+  overflow: hidden;
+  width: 108px;
+  height: 64px;
+  margin-bottom: 14px;
+}
+
+.footer-logo-wrap img {
+  height: 120px;
+  width: auto;
+  display: block;
+  margin-top: -21px;
+  margin-left: -31px;
   filter: brightness(0) invert(1);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .footer-brand p {
