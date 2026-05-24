@@ -716,17 +716,17 @@ footer {
 .footer-logo-wrap {
   display: block;
   overflow: hidden;
-  width: 108px;
-  height: 64px;
+  width: 148px;
+  height: 66px;
   margin-bottom: 14px;
 }
 
 .footer-logo-wrap img {
-  height: 120px;
+  height: 110px;
   width: auto;
   display: block;
-  margin-top: -21px;
-  margin-left: -31px;
+  margin-top: -18px;
+  margin-left: -14px;
   filter: brightness(0) invert(1);
   opacity: 0.85;
 }
