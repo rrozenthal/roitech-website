@@ -628,6 +628,9 @@ section {
 
 .req { color: var(--blue-dark); font-weight: 700; }
 
+/* Brand name highlight in body text */
+.brand { color: var(--blue-dark); font-weight: 700; }
+
 .form-result-success {
   padding: 14px 16px;
   background: #edfaf3;
