@@ -264,6 +264,9 @@
       try {
         const formData = new FormData(this);
         const object   = Object.fromEntries(formData.entries());
+        // hCaptcha is a client-side "I am human" gate only — strip its token
+        // so it doesn't appear as a long string in the notification email.
+        delete object['h-captcha-response'];
         const response = await fetch('https://api.web3forms.com/submit', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
