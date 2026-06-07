@@ -146,7 +146,7 @@
             </div>
 
             <!-- hCaptcha "I am human" check (free shared Web3Forms site key) -->
-            <div class="form-group">
+            <div class="form-group" style="display:flex; justify-content:center;">
               <div class="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
             </div>
 
@@ -225,9 +225,27 @@
       const firstName = document.getElementById('first-name').value.trim();
       const lastName  = document.getElementById('last-name').value.trim();
       const email     = document.getElementById('email').value.trim();
+      const phone     = document.getElementById('phone').value.trim();
       if (!firstName || !lastName || !email) {
         showResult('error', 'Please fill in all required fields.');
         return;
+      }
+
+      // Email format validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showResult('error', 'Please enter a valid email address (for example, name@company.com).');
+        return;
+      }
+
+      // Phone format validation (optional) — accepts 2223332222, +12223332222,
+      // (222) 333-2222, 222-333-2222, 222.333.2222, and similar formats.
+      if (phone) {
+        const phoneDigits = phone.replace(/[^\d]/g, '');
+        if (!/^1?\d{10}$/.test(phoneDigits)) {
+          showResult('error', 'Please enter a valid 10-digit phone number (e.g. (201) 233-2933), or leave it blank.');
+          return;
+        }
       }
 
       // hCaptcha — require the "I am human" check before sending
@@ -259,8 +277,9 @@
           this.reset();
           document.getElementById('form-subject').value = 'New Inquiry — ROI Technologies';
         } else {
+          const reason = (data && data.message) ? data.message : 'Something went wrong while sending your message.';
           showResult('error',
-            'Something went wrong. Please try again or email us directly at <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.');
+            reason + ' Please try again, or email us directly at <a href="mailto:roi@roitechllc.com">roi@roitechllc.com</a>.');
         }
       } catch (err) {
         showResult('error',
