@@ -93,28 +93,23 @@ nav {
   height: 80px;
 }
 
-/* Crop the PNG's built-in white padding so only the logo content shows */
+/* Vector logo — crisp at any size, no cropping needed */
 .nav-logo {
-  display: block;
-  overflow: hidden;
-  width: 148px;
-  height: 80px;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
 }
 
 .nav-logo img {
-  height: 130px;
+  height: 44px;
   width: auto;
   display: block;
-  margin-top: -20px;
-  margin-left: -14px;
   animation: navLogoIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition: transform 0.25s ease, filter 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .nav-logo:hover img {
   transform: scale(1.04);
-  filter: drop-shadow(0 4px 14px rgba(45, 95, 154, 0.35));
 }
 
 .nav-links {
@@ -715,23 +710,17 @@ footer {
   margin-bottom: 36px;
 }
 
-/* Footer logo — crop PNG whitespace, invert to white for dark bg */
+/* Footer logo — white vector variant for the dark footer */
 .footer-logo-wrap {
   display: block;
-  overflow: hidden;
-  width: 148px;
-  height: 66px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .footer-logo-wrap img {
-  height: 110px;
+  height: 52px;
   width: auto;
   display: block;
-  margin-top: -18px;
-  margin-left: -14px;
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .footer-brand p {
