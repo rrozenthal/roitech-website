@@ -301,6 +301,53 @@ nav {
   margin-right: auto;
 }
 
+/* ── PRODUCT LOCKUP (Synapse / Atlas page headers) ──────── */
+.page-header.product-header::after { display: none; } /* drop the generic watermark */
+
+.product-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.product-mark {
+  height: 72px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.22));
+}
+
+.product-id { text-align: left; }
+
+.product-name {
+  margin: 0;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.2vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.product-by {
+  display: block;
+  margin-top: 8px;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: #bcdcf6;
+}
+
+.page-header.product-header p { margin-top: 20px; }
+
+@media (max-width: 560px) {
+  .product-lockup { gap: 14px; }
+  .product-mark { height: 54px; }
+}
+
 /* ── SECTIONS ───────────────────────────────────────────── */
 
 section {
@@ -693,6 +740,28 @@ footer {
   background: var(--charcoal);
   color: #b0b8cc;
   padding: 48px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faint oversized square motif as a brand texture in the footer */
+footer::after {
+  content: '';
+  position: absolute;
+  right: -70px;
+  bottom: -90px;
+  width: 460px;
+  height: 460px;
+  background: url('../images/roi-squares-white.svg') right bottom/contain no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-inner,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-inner {
