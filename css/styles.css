@@ -74,7 +74,9 @@ img { max-width: 100%; display: block; }
 
 /* ── NAVIGATION ─────────────────────────────────────────── */
 
-header {
+/* Option B header — big centered logo, CTA + hamburger menu */
+header,
+.site-header {
   background: var(--white);
   border-bottom: 2px solid var(--blue-light);
   position: sticky;
@@ -83,15 +85,116 @@ header {
   box-shadow: var(--shadow);
 }
 
-nav {
-  max-width: 1100px;
+.header-bar {
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  justify-self: center;
+  display: block;
+}
+.header-logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+  transition: transform 0.25s ease;
+  animation: navLogoIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.header-logo:hover img { transform: scale(1.04); }
+
+.header-actions {
+  justify-self: end;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 80px;
+  gap: 14px;
 }
+
+/* CTA pill — present in header, footer, sections */
+.cta {
+  display: inline-block;
+  background: var(--blue-dark);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 11px 22px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+.cta:hover { background: #244e80; color: #fff; transform: translateY(-1px); }
+
+/* Hamburger */
+.hmb {
+  width: 48px;
+  height: 42px;
+  border: none;
+  border-radius: 8px;
+  background: var(--blue-dark);
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+.hmb:hover { background: #244e80; }
+.hmb span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.2s;
+}
+.hmb[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hmb[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hmb[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Dropdown menu panel */
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 20px;
+  min-width: 230px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(20, 40, 80, 0.16);
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 110;
+}
+.nav-menu.open { display: flex; animation: fadeUp 0.18s ease both; }
+.nav-menu a {
+  padding: 11px 16px;
+  border-radius: 8px;
+  color: var(--charcoal);
+  font-weight: 500;
+  font-size: 0.98rem;
+}
+.nav-menu a:hover,
+.nav-menu a.active { background: var(--blue-light); color: var(--blue-dark); }
+.nav-menu .menu-cta {
+  margin-top: 6px;
+  background: var(--blue-dark);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+}
+.nav-menu .menu-cta:hover { background: #244e80; color: #fff; }
+
+/* Anchor targets clear the sticky header */
+section[id] { scroll-margin-top: 104px; }
 
 /* Vector logo — crisp at any size, no cropping needed */
 .nav-logo {
@@ -346,6 +449,7 @@ nav {
 @media (max-width: 560px) {
   .product-lockup { gap: 14px; }
   .product-mark { height: 54px; }
+  .header-actions .cta { display: none; } /* "Get in Touch" stays in the menu + footer */
 }
 
 /* ── SECTIONS ───────────────────────────────────────────── */
@@ -554,6 +658,79 @@ section {
   font-size: 0.95rem;
   color: var(--text-light);
 }
+
+/* Custom-solutions feature tile (Services section) */
+.feature-tile {
+  background: linear-gradient(135deg, #1a3e6e 0%, #2d5f9a 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 36px 38px;
+  margin-bottom: 32px;
+  box-shadow: 0 14px 34px rgba(45, 95, 154, 0.2);
+}
+.feature-badge {
+  display: inline-block;
+  background: #fff;
+  color: var(--blue-dark);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.feature-tile h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.feature-tile p {
+  font-size: 1.02rem;
+  opacity: 0.95;
+  max-width: 760px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.feature-tile p a { color: #cfe4f8; font-weight: 700; text-decoration: underline; }
+
+/* Product summary sections (Atlas / Synapse on the home page) */
+.product-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  margin-bottom: 12px;
+}
+.product-points {
+  list-style: none;
+  margin: 8px 0 26px;
+}
+.product-points li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 10px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.product-points li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+.product-card {
+  background: linear-gradient(135deg, #1a3e6e 0%, #2d5f9a 60%, #4a8cc7 100%);
+  border-radius: 16px;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  box-shadow: 0 16px 38px rgba(45, 95, 154, 0.22);
+}
+.product-card .product-lockup { gap: 16px; }
+.product-card .product-mark { height: 58px; }
+.product-card .product-name { font-size: 2.1rem; }
 
 /* ── CONTACT PAGE ───────────────────────────────────────── */
 
@@ -768,9 +945,22 @@ footer::after {
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
   gap: 40px;
   margin-bottom: 36px;
+}
+
+.footer-brand .footer-cta { margin-top: 18px; }
+
+.footer-col ul .fsub {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  display: block;
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) and (min-width: 561px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
 /* Footer logo — white vector variant for the dark footer */
@@ -838,6 +1028,12 @@ footer::after {
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
+
+  .header-spacer { display: none; }
+  .header-bar { grid-template-columns: auto 1fr; min-height: 74px; }
+  .header-logo { justify-self: start; }
+  .header-logo img { height: 52px; }
+  .nav-menu { right: 16px; }
 
   .two-col,
   .contact-layout,
